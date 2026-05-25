@@ -24,6 +24,7 @@ spec:
       initContainers:
         - name: init-mydb
           image: busybox
+          command: ["sh"]
           args:
             [
               "-c",
@@ -31,6 +32,7 @@ spec:
             ]
         - name: init-memcache
           image: busybox
+          command: ["sh"]
           args:
             [
               "-c",
@@ -38,8 +40,9 @@ spec:
             ]
         - name: init-rabbitmq
           image: busybox
+          command: ["sh"]
           args:
             [
               "-c",
-              "until nslookup vprormq01.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mydb; sleep 2; done;",
+              "until nslookup vpromq01.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mydb; sleep 2; done;",
             ]
